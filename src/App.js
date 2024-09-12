@@ -15,7 +15,8 @@ export default function App() {
     );
   }
   function handleClearList(){
-    setItems([])
+    const confirmed = window.confirm("Are you sure you wanna delete all?")
+    if (confirmed) setItems([])
   }
   function handleDeleteItem(id) {
     setItems((items) => items.filter((item) => item.id !== id));
