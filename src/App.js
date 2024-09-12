@@ -23,7 +23,11 @@ export default function App() {
     <div className="app">
       <Logo />
       <Form onAddItems={handleAddItems} />
-      <PackingList items={items} onDeleteItems={handleDeleteItem} onToggle={handleTogglePacked} />
+      <PackingList
+        items={items}
+        onDeleteItems={handleDeleteItem}
+        onToggle={handleTogglePacked}
+      />
       <Stats items={items} />
     </div>
   );
@@ -74,7 +78,12 @@ function PackingList({ items, onDeleteItems, onToggle }) {
     <div className="list">
       <ul>
         {items.map((item) => (
-          <Item item={item} key={item.id} onDeleteItems={onDeleteItems} onToggle={onToggle} />
+          <Item
+            item={item}
+            key={item.id}
+            onDeleteItems={onDeleteItems}
+            onToggle={onToggle}
+          />
         ))}
       </ul>
     </div>
@@ -94,14 +103,18 @@ function Item({ item, onDeleteItems, onToggle }) {
 }
 
 function Stats({ items }) {
-  const numItems = items.length
-  const packedItems = items.filter((items) => items.packed).length
-  const percentage = Math.round((packedItems/numItems)*100)
+  const numItems = items.length;
+  const packedItems = items.filter((items) => items.packed).length;
+  const percentage = Math.round((packedItems / numItems) * 100);
   return (
     <footer className="stats">
-      <em>{numItems === 0? "Start adding some items to your list.":
-        percentage === 100 ? "You got everything! Ready to go. ✈️":
-        `You have ${numItems} in your list and you already packed packed ${packedItems} (${percentage}%)`}</em>
+      <em>
+        {numItems === 0
+          ? "Start adding some items to your list."
+          : percentage === 100
+          ? "You got everything! Ready to go. ✈️"
+          : `You have ${numItems} in your list and you already packed packed ${packedItems} (${percentage}%)`}
+      </em>
     </footer>
   );
 }
